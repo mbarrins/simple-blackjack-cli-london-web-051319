@@ -6,8 +6,8 @@ def deal_card
   rand(1..11)
 end
 
-def display_card_total(total)
-  "Your cards add up to #{total}"
+def display_card_total(card_total)
+  "Your cards add up to #{card_total}"
 end
 
 def prompt_user
@@ -18,8 +18,8 @@ def get_user_input
   gets.chomp
 end
 
-def end_game(total)
-  "Sorry, you hit #{total}. Thanks for playing!"
+def end_game(card_total)
+  "Sorry, you hit #{card_total}. Thanks for playing!"
 end
 
 def initial_round
@@ -28,13 +28,21 @@ def initial_round
   sum
 end
 
-def hit?
+def hit?(card_total)
   prompt_user
-  get_user_input == "h"
+  case get_user_input
+  when "h"
+    card_total += deal_card
+  when  "s"
+
+  else
+    invalid_command
+  end
 end
 
 def invalid_command
-  # code invalid_command here
+  puts "Please enter a valid command"
+  prompt_user
 end
 
 #####################################################
